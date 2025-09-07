@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lê Thái Hoàng Sơn</title>
+  <meta name="description" content="Portfolio an ninh mạng của Lê Thái Hoàng Sơn. Tập trung AppSec, DevSecOps và phòng thủ hiện đại. Phong cách pastel, tinh gọn, rõ ràng và chuyên nghiệp." />
+
+  <!-- Security-focused meta for static hosting (hints). -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23ffc2d6' d='M32 58s-22-12.6-22-30A14 14 0 0124 14c3.6 0 6.8 1.6 8 4 1.2-2.4 4.4-4 8-4a14 14 0 0114 14c0 17.4-22 30-22 30z'/%3E%3C/svg%3E" />
+
+  <style>
+    :root{
+      /* Pastel dark with a cuter pink primary */
+      --bg: #171329;          /* cute plum-violet */
+      --bg-2: #120f22;        /* deeper plum */
+      --surface: #221b36;     /* soft violet surface */
+      --fg: #f8f9ff;          /* text */
+      --muted: #cfd6f4;       /* secondary text slightly lighter */
+      --p-pink: #ffc2d6;      /* sakura pink (primary) */
+      --p-lilac: #e3d1ff;     /* soft lilac */
+      --p-mint: #c7ffe9;      /* mint */
+      --p-peach: #ffe0c2;     /* peach */
+      --p-lemon: #fff7b3;     /* lemon */
+      --primary: var(--p-pink);
+      --primary-soft: rgba(255, 194, 214, .18);
+      --border: rgba(255,255,255,0.16);
+      --shadow: 0 10px 30px rgba(227,209,255,0.14), 0 6px 20px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box }
+    html, body{ height:100% }
+    body{
+      margin:0; color:var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji','Segoe UI Emoji';
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(255,194,214,0.20), transparent 55%),
+        radial-gradient(900px 500px at 10% 110%, rgba(199,255,233,0.16), transparent 60%),
+        radial-gradient(700px 400px at 10% 0%, rgba(227,209,255,0.12), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      overflow-x:hidden;
+    }
+
+    header{
+      position: sticky; top:0; z-index:5;
+      background: linear-gradient(180deg, rgba(16,19,39,.9), rgba(16,19,39,.6) 70%, rgba(16,19,39,0));
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{ max-width: 1140px; margin:0 auto; padding: 14px 18px; display:flex; align-items:center; justify-content:space-between; gap:16px }
+    .brand{ display:flex; gap:12px; align-items:center; font-weight:850; letter-spacing:.3px }
+    .lock-badge{ position:relative; width:26px; height:26px; border-radius:10px; background: linear-gradient(135deg, var(--primary), var(--p-lilac)); box-shadow: 0 0 0 3px rgba(255,194,214,.24) }
+    .lock-badge::before{ content:""; position:absolute; left:7px; top:-7px; width:12px; height:10px; border:3px solid var(--primary); border-bottom:none; border-radius:8px }
+    .brand span{ color:var(--fg) }
+    nav a{ color: var(--muted); text-decoration:none; padding: 8px 10px; border-radius: 12px; font-size:14px }
+    nav a:hover{ background: var(--primary-soft); color: var(--fg) }
+
+    .container{ max-width: 1140px; margin:0 auto; padding: 22px; position:relative; z-index:1 }
+
+    .hero{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 28px; align-items:center; min-height: 66svh; padding: 44px 0 14px }
+    .h-title{ font-size: clamp(28px, 5.6vw, 54px); line-height:1.08; margin:0 0 10px; font-weight: 900 }
+    .h-title .soft{ color: var(--primary) }
+    .lead{ color: var(--muted); font-size: clamp(14px, 2.3vw, 18px); line-height: 1.65; margin: 0 0 18px }
+
+    .role-chips{ display:flex; gap:8px; flex-wrap:wrap; margin: 8px 0 18px }
+    .chip{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); background: rgba(255,255,255,0.05); padding:6px 10px; border-radius: 999px; font-size:13px }
+
+    .cta{ display:flex; gap: 10px; flex-wrap:wrap }
+    .btn{ border:1px solid rgba(255,194,214,.30); background: linear-gradient(180deg, rgba(255,194,214,.20), rgba(227,209,255,.10)); color: var(--fg); padding: 10px 14px; border-radius: 999px; text-decoration:none; font-weight:800; box-shadow: var(--shadow); transition:.2s }
+    .btn:hover{ transform: translateY(-2px) }
+    .btn.alt{ background: linear-gradient(180deg, rgba(255,224,194,.20), rgba(255,194,214,.10)); border-color: rgba(255,224,194,.35) }
+
+    .avatar-card{
+      background: linear-gradient(180deg, rgba(20,24,42,.7), rgba(20,24,42,.55)); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden;
+    }
+    .avatar-wrap{ display:flex; align-items:center; gap:18px; padding: 16px }
+    .avatar{
+      width: 176px; height:176px; border-radius: 32px; position: relative; overflow: hidden;
+      background: radial-gradient(120px 80px at 70% 30%, rgba(255,247,179,.25), transparent 60%),
+                  linear-gradient(135deg, rgba(255,194,214,.35), rgba(199,255,233,.25));
+      box-shadow: inset 0 0 0 3px rgba(255,194,214,.35), 0 10px 26px rgba(227,209,255,.18);
+      flex-shrink: 0;
+    }
+    .avatar img.photo{ width:100%; height:100%; object-fit: cover; display:block }
+    .avatar .fallback{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#1a2039; font-weight:900; font-size: 28px; opacity:.7 }
+    .avatar-hint{ color: var(--muted); font-size: 13px }
+
+    section{ padding: 36px 0 }
+    .section-title{ font-size: 24px; margin: 0 0 12px; letter-spacing:.2px }
+    .section-sub{ color: var(--muted); margin: 0 0 18px }
+
+    .cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px }
+    .card{ background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow) }
+    .card h3{ margin:0 0 8px }
+    .meta{ color: var(--muted); font-size: 13px }
+
+    .skill-chip{ display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(255,194,214,.40); background: linear-gradient(180deg, rgba(255,194,214,.16), rgba(255,194,214,.08)); padding:6px 10px; border-radius: 999px; margin: 4px 6px 0 0; font-size: 13px }
+    .skill-chip .bar{ height: 6px; width: 70px; background: rgba(255,255,255,0.08); border-radius: 999px; overflow: hidden }
+    .skill-chip .bar span{ display:block; height:100%; background: linear-gradient(90deg, var(--primary), var(--p-mint)) }
+
+    .timeline{ position: relative; margin: 6px 0 0; padding-left: 18px }
+    .timeline::before{ content:""; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: rgba(227,209,255,0.45) }
+    .timeline li{ list-style:none; margin: 0 0 12px; position: relative }
+    .timeline li::before{ content:""; position: absolute; left: 0px; top: 6px; width: 10px; height: 10px; background: var(--p-lilac); border-radius: 50%; box-shadow: 0 0 12px rgba(227,209,255,.6) }
+
+    .socials{ display:flex; gap:10px; margin-top: 12px; flex-wrap:wrap }
+    .icon-btn{ display:inline-flex; align-items:center; gap:10px; padding:9px 12px; border-radius: 14px; border:1px solid var(--border); background: rgba(255,255,255,0.05); color: var(--fg); text-decoration:none; font-weight:700 }
+    .icon-btn:hover{ transform: translateY(-2px) }
+
+    footer{ padding: 18px 0 40px; color: var(--muted); text-align:center }
+
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; padding-top: 24px }
+      .avatar-wrap{ flex-direction: column; align-items:flex-start }
+    }
+
+    @media (prefers-reduced-motion: reduce){ *{ animation: none !important; transition: none !important } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand"><span class="lock-badge" aria-hidden="true"></span><span>Lê Thái Hoàng Sơn • Security Engineer</span></div>
+      <nav>
+        <a href="#about">Giới thiệu</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#projects">Dự án</a>
+        <a href="#experience">Kinh nghiệm</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <h1 class="h-title">Xin chào, mình là <span class="soft">Lê Thái Hoàng Sơn</span> </h1>
+        <p class="lead">Mình thiết kế và bảo vệ ứng dụng web từ sớm: AppSec, DevSecOps và phòng thủ hiện đại. Ưu tiên giải pháp an toàn, dễ vận hành và thân thiện với người dùng.</p>
+        <div class="role-chips" aria-label="các vai trò chuyên môn">
+          <span class="chip"> AppSec Engineer</span>
+          <span class="chip">🧩 DevSecOps</span>
+          <span class="chip">🛡️ Blue Team</span>
+          <span class="chip">🧪 Pentest có trách nhiệm</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#projects">Xem dự án</a>
+          <a class="btn alt" href="#contact">Kết nối</a>
+        </div>
+      </div>
+      <div class="avatar-card" role="region" aria-label="Ảnh đại diện">
+        <div class="avatar-wrap">
+          <div class="avatar">
+            <img class="photo" src="avatar.jpg" alt="Ảnh của Lê Thái Hoàng Sơn" onerror="this.style.display='none'">
+          </div>
+          <div>
+            <h3 style="margin:0 0 6px">Giới thiệu nhanh</h3>
+            <p style="margin:0 0 8px;color:var(--fg)"><strong>AppSec • DevSecOps • Blue Team.</strong> Mình tối ưu chính sách, phát hiện sớm lỗ hổng và tự động hóa kiểm thử để phát hành an toàn.</p>
+            <div class="role-chips">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">Giới thiệu</h2>
+      <p class="section-sub">Mình tin rằng bảo mật tốt là bảo mật gần gũi: rõ ràng, dựa trên rủi ro và thân thiện với đội phát triển.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>🔐 Secure-by-Default</h3>
+          <p>Thiết kế an toàn từ đầu: CSP, HSTS, nosniff, frame-ancestors… theo thực tiễn tốt.</p>
+        </article>
+        <article class="card">
+          <h3>🧪 Pentest có trách nhiệm</h3>
+          <p>Kịch bản khai thác có kiểm soát, bằng chứng rõ ràng, khuyến nghị khả thi theo ưu tiên.</p>
+        </article>
+        <article class="card">
+          <h3>🤖 DevSecOps</h3>
+          <p>Tự động hóa kiểm thử, quản trị bí mật, SBOM và bảo vệ chuỗi cung ứng phần mềm.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Kỹ năng</h2>
+      <p class="section-sub">Tập trung vào tác động thực tế và khả năng vận hành.</p>
+      <div class="card">
+        <div class="skill-chip">Web Security<div class="bar" aria-label="mức" title="88%"><span style="width:88%"></span></div></div>
+        <div class="skill-chip">Pentest<div class="bar" aria-label="mức" title="82%"><span style="width:82%"></span></div></div>
+        <div class="skill-chip">Cloud Sec<div class="bar" aria-label="mức" title="72%"><span style="width:72%"></span></div></div>
+        <div class="skill-chip">DevSecOps<div class="bar" aria-label="mức" title="78%"><span style="width:78%"></span></div></div>
+        <div class="skill-chip">Threat Hunting<div class="bar" aria-label="mức" title="68%"><span style="width:68%"></span></div></div>
+        <div class="skill-chip">DFIR<div class="bar" aria-label="mức" title="62%"><span style="width:62%"></span></div></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Dự án nổi bật</h2>
+      <p class="section-sub">Trọng tâm: rõ ràng, dễ tích hợp, dễ bảo trì.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>🍑 Kawaii WAF Rules</h3>
+          <p>Bộ quy tắc WAF gọn nhẹ cho dịch vụ nhỏ, ưu tiên giảm false-positive và dễ vận hành.</p>
+          <p class="meta">Stack: NGINX, ModSecurity (mẫu)</p>
+          <div class="cta"><a class="btn" href="#">Mã nguồn</a><a class="btn alt" href="#">Demo</a></div>
+        </article>
+        <article class="card">
+          <h3>🫧 Pastel SOC Dashboard</h3>
+          <p>Bảng điều khiển SOC tối giản, tập trung tín hiệu quan trọng, giảm nhiễu thông tin.</p>
+          <p class="meta">Stack: HTML/JS, Chart (tự viết)</p>
+          <div class="cta"><a class="btn" href="#">Mã nguồn</a><a class="btn alt" href="#">Demo</a></div>
+        </article>
+        <article class="card">
+          <h3>🌙 Minty CSP Builder</h3>
+          <p>Trình gợi ý CSP cho website tĩnh; cân bằng giữa bảo mật và tính tiện dụng.</p>
+          <p class="meta">Stack: JS thuần</p>
+          <div class="cta"><a class="btn" href="#">Mã nguồn</a><a class="btn alt" href="#">Demo</a></div>
+        </article>
+        <article class="card">
+          <h3>💗 Cute Secret Scanner</h3>
+          <p>Kiểm tra bí mật rò rỉ trước khi phát hành; báo cáo rõ ràng, dễ hành động.</p>
+          <p class="meta">Stack: GitHub Actions</p>
+          <div class="cta"><a class="btn" href="#">Mã nguồn</a><a class="btn alt" href="#">Demo</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="section-title">Kinh nghiệm & Vai trò</h2>
+      <p class="section-sub">Một số vai trò chuyên môn từng đảm nhiệm.</p>
+      <div class="cards">
+        <article class="card"><h3>🌸 AppSec Engineer</h3><p class="meta">Thiết kế kiểm soát bảo mật ứng dụng, threat modeling, review mã và quy trình phát hành an toàn.</p></article>
+        <article class="card"><h3>🧊 Blue Team Engineer</h3><p class="meta">Giám sát, phát hiện và phản ứng sự cố; tối ưu tín hiệu và quy trình triage.</p></article>
+        <article class="card"><h3>🔥 Offensive Security</h3><p class="meta">Pentest có trách nhiệm, báo cáo rõ ràng, khuyến nghị theo ưu tiên rủi ro.</p></article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Liên hệ</h2>
+      <p class="section-sub">Kết nối để trao đổi cơ hội hợp tác hoặc cố vấn bảo mật.</p>
+      <div class="card">
+          <a class="icon-btn" href="https://www.facebook.com/LTHSonNek/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.6V12h2.8V9.8c0-2.7 1.6-4.2 4-4.2 1.1 0 2.3.2 2.3.2v2.6h-1.3c-1.3 0-1.7.8-1.7 1.7V12h3l-.5 2.9h-2.5v7A10 10 0 0022 12z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a class="icon-btn" href="mailto:Sle751236@gmail.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5L4 8V6l8 5 8-5v2z"/></svg>
+            <span>Email: Sle751236@gmail.com</span>
+          </a>
+          <a class="icon-btn" href="https://github.com/Reynolds89714" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.27.82-.6v-2.1c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.76.08-.74.08-.74 1.23.09 1.88 1.27 1.88 1.27 1.08 1.85 2.82 1.32 3.51 1 .11-.8.42-1.32.76-1.62-2.66-.31-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.25-3.22-.13-.31-.54-1.56.12-3.24 0 0 1.02-.33 3.35 1.23a11.65 11.65 0 016.1 0c2.33-1.56 3.35-1.23 3.35-1.23.66 1.68.25 2.93.12 3.24.78.84 1.25 1.91 1.25 3.22 0 4.61-2.81 5.61-5.49 5.92.43.37.82 1.1.82 2.22v3.29c0 .33.22.72.83.6A12 12 0 0012 .5z"/></svg>
+            <span>GitHub: Reynolds89714</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Lê Thái Hoàng Sơn — Professional & Friendly Security. Mọi quyền được bảo lưu.</div>
+  </footer>
+
+  <script>
+    // Tiny JS: year + smooth internal navigation
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href').slice(1);
+        const t = document.getElementById(id);
+        if(t){ e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+  </script>
+</body>
+</html>
